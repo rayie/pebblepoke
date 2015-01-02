@@ -27,8 +27,10 @@ module.exports= function(){
 
 		if ( e.itemIndex > 0 ){
 			var pos = self.hand[ e.itemIndex - 1 ];
+			console.log("pos up item:" , pos);
 			var pk = PKDX[pos];
 			pk.title = pk.n;
+			console.log("pos up item:" , pos);
 
 			c.on("click", "up", function(){
 				
