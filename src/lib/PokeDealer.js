@@ -23,7 +23,7 @@ module.exports= function(){
 			"Def:" + e.item.d
 		].join("\n");
 		var c = new UI.Card({ title: e.item.title, body:  body });
-		c.action({ up: 'images/action_icon_plus.png', down: 'images/action_icon_minus.png' });
+		//c.action({ up: 'images/action_icon_plus.png', down: 'images/action_icon_minus.png' });
 
 		if ( e.itemIndex > 0 ){
 			var pos = self.hand[ e.itemIndex - 1 ];
