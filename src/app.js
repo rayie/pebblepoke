@@ -1,3 +1,4 @@
+var UI = require("ui");
 var PokeDealer = require("PokeDealer");
 var main = new UI.Card({
 	title: 'PebblePoke!',
@@ -10,7 +11,7 @@ var pd = new PokeDealer();
 var initGame = function(e){
 	this.title = "..dealing cards ..";	
 	return pd.deal_cards();
-}
+};
 
 main.on('click', 'up', initGame );
 main.on('click', 'down', initGame );

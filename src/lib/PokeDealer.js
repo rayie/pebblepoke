@@ -1,3 +1,4 @@
+var UI = require("ui");
 var PKDX = require("./mini_pokedex.js").pkdx;
 var l = console.log;
 var rand = function(max){
