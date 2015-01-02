@@ -17,13 +17,29 @@ var rand_list = function(n,max){
 module.exports= function(){
 	var self = this;
 
-
 	this.show_card = function(e){
 		var body = [
 			"Atk:" + e.item.a,
 			"Def:" + e.item.d
 		].join("\n");
 		var c = new UI.Card({ title: e.item.title, body:  body });
+		c.action({ up: 'images/action_icon_plus.png', down: 'images/action_icon_minus.png' });
+
+		if ( e.itemIndex > 0 ){
+			var pos = self.hand[ e.itemIndex - 1 ];
+			var pk = PKDX[pos];
+			pk.title = pk.n;
+
+			c.on("click", "up", function(){
+				
+				console.log("got up click, to pos:" + pos + " " + pk.title);
+				return self.show_card({  
+					item: pk,
+					itemIndex: pos
+				});
+			});
+		}
+			
 		c.show();
 	}
 
