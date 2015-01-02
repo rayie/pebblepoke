@@ -26,20 +26,39 @@ module.exports= function(){
 		//c.action({ up: 'images/action_icon_plus.png', down: 'images/action_icon_minus.png' });
 
 		if ( e.itemIndex > 0 ){
-			var pos_in_hand = e.itemIndex - 1;
-			var pos_in_pkdx = self.hand[ pos_in_hand ];
-			console.log("pos_in_pkdx up item:" , pos_in_pkdx);
-			var pk = PKDX[pos_in_pkdx];
-			pk.title = pk.n;
+			var up_pos_in_hand = e.itemIndex - 1;
+			var up_pos_in_pkdx = self.hand[ up_pos_in_hand ];
+			console.log("up_pos_in_pkdx up item:" , up_pos_in_pkdx);
+			var up_pk = PKDX[up_pos_in_pkdx];
+			up_pk.title = up_pk.n;
 			c.on("click", "up", function(){
-				
-				console.log("got up click, to pos_in_pkdx:" + pos_in_pkdx + " " + pk.title);
-				return self.show_card({  
-					item: pk,
-					itemIndex: pos_in_hand
+				console.log("got up click, to pos_in_pkdx:" + up_pos_in_pkdx + " " + up_pk.title);
+				self.show_card({  
+					item: up_pk,
+					itemIndex: up_pos_in_hand
 				});
+				return setTimeout(c.hide,250);
 			});
 		}
+
+
+		if ( e.itemIndex < ( self.hand.length-1 ) ){
+			var down_pos_in_hand = e.itemIndex + 1;
+			var down_pos_in_pkdx = self.hand[ down_pos_in_hand ];
+			console.log("down_pos_in_pkdx up item:" , down_pos_in_pkdx);
+			var down_pk = PKDX[down_pos_in_pkdx];
+			down_pk.title = down_pk.n;
+			c.on("click", "down", function(){
+				console.log("got down click, to down_pos_in_pkdx:" + down_pos_in_pkdx + " " + down_pk.title);
+				self.show_card({  
+					item: down_pk,
+					itemIndex: down_pos_in_hand
+				});
+				return setTimeout(c.hide,250);
+			});
+		}
+
+
 			
 		c.show();
 	}
