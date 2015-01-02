@@ -26,18 +26,17 @@ module.exports= function(){
 		//c.action({ up: 'images/action_icon_plus.png', down: 'images/action_icon_minus.png' });
 
 		if ( e.itemIndex > 0 ){
-			var pos = self.hand[ e.itemIndex - 1 ];
-			console.log("pos up item:" , pos);
-			var pk = PKDX[pos];
+			var pos_in_hand = e.itemIndex - 1;
+			var pos_in_pkdx = self.hand[ pos_in_hand ];
+			console.log("pos_in_pkdx up item:" , pos_in_pkdx);
+			var pk = PKDX[pos_in_pkdx];
 			pk.title = pk.n;
-			console.log("pos up item:" , pos);
-
 			c.on("click", "up", function(){
 				
-				console.log("got up click, to pos:" + pos + " " + pk.title);
+				console.log("got up click, to pos_in_pkdx:" + pos_in_pkdx + " " + pk.title);
 				return self.show_card({  
 					item: pk,
-					itemIndex: pos
+					itemIndex: pos_in_hand
 				});
 			});
 		}
@@ -46,6 +45,10 @@ module.exports= function(){
 	}
 
 	this.deal_cards = function(){
+		/*
+			self.hand contains an array of integers representing positions in PKDX
+		*/
+	
 		self.hand = rand_list(7,PKDX.length);
 
 		var sections = [];
