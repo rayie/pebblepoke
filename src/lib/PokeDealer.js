@@ -17,7 +17,7 @@ var rand_list = function(n,max){
 module.exports= function(){
 	var self = this;
 
-	this.show_card = function(e){
+	this.show_card = function(e, prev_card){
 		var body = [
 			"Atk:" + e.item.a,
 			"Def:" + e.item.d
@@ -33,11 +33,7 @@ module.exports= function(){
 			up_pk.title = up_pk.n;
 			c.on("click", "up", function(){
 				console.log("got up click, to pos_in_pkdx:" + up_pos_in_pkdx + " " + up_pk.title);
-				self.show_card({  
-					item: up_pk,
-					itemIndex: up_pos_in_hand
-				});
-				return setTimeout(c.hide,250);
+				return self.show_card({  item: up_pk, itemIndex: up_pos_in_hand },c);
 			});
 		}
 
@@ -50,17 +46,14 @@ module.exports= function(){
 			down_pk.title = down_pk.n;
 			c.on("click", "down", function(){
 				console.log("got down click, to down_pos_in_pkdx:" + down_pos_in_pkdx + " " + down_pk.title);
-				self.show_card({  
-					item: down_pk,
-					itemIndex: down_pos_in_hand
-				});
-				return setTimeout(c.hide,250);
+				return self.show_card({  item: down_pk, itemIndex: down_pos_in_hand }, c);
 			});
 		}
 
 
 			
 		c.show();
+		if ( typeof prev_card == "object" ) prev_card.hide();
 	}
 
 	this.deal_cards = function(){
