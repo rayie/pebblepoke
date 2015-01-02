@@ -10,7 +10,9 @@ var main = new UI.Card({
 var pd = new PokeDealer();
 var initGame = function(e){
 	this.title = "..dealing cards ..";	
-	return pd.deal_cards();
+	setTimeout(function(){
+		return pd.deal_cards();
+	},1000);
 };
 
 main.on('click', 'up', initGame );

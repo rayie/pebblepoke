@@ -15,17 +15,34 @@ var rand_list = function(n,max){
 	return an array of 
 */
 module.exports= function(){
+	var self = this;
+
+
+	this.show_card = function(e){
+		var body = [
+			"Atk:" + e.item.a,
+			"Def:" + e.item.d
+		].join("\n");
+		var c = new UI.Card({ title: e.item.title, body:  body });
+		c.show();
+	}
+
 	this.deal_cards = function(){
-		var hand = rand_list(7,PKDX.length);
-		//l(hand);
+		self.hand = rand_list(7,PKDX.length);
+
 		var sections = [];
 		var items = [];
-		hand.forEach(function(pos){
+
+		self.hand.forEach(function(pos){
 			var pk = PKDX[pos];
-			items.push({ title: pk.n });
+			pk.title = pk.n;
+			items.push(pk);
 		});
+
 		var sections=[{ title:"Your Cards", items:items }];
 		var menu = new UI.Menu({ sections: sections });
+
+		menu.on("select", self.show_card);
 		menu.show();
 	};
 };
