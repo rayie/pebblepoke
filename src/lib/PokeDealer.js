@@ -19,10 +19,12 @@ module.exports= function(){
 		var hand = rand_list(7,PKDX.length);
 		//l(hand);
 		var sections = [];
+		var items = [];
 		hand.forEach(function(pos){
 			var pk = PKDX[pos];
-			sections.push({ title: pk.n });
+			items.push({ title: pk.n });
 		});
+		var sections=[{ title:"Your Cards", items:items }];
 		var menu = new UI.Menu({ sections: sections });
 		menu.show();
 	};
